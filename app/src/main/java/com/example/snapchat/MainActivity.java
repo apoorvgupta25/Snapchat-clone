@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
     EditText emailEditText;
     EditText passwordEditText;
     private FirebaseAuth mAuth;
-    String email;
-    String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
