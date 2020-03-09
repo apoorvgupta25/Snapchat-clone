@@ -38,10 +38,6 @@ public class MainActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
 
-        email = emailEditText.getText().toString();
-        password = passwordEditText.getText().toString();
-
-
 //       Checking Already Logged in
         if(mAuth.getCurrentUser() != null){                                                         //1.checking that the current user is logged or not; if it is not equal to null i.e. we have to move to next activity without asking for email and password(Already Logged in)
             login();
@@ -52,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
 //    2.1.Login
     public void logInUser(View view){
 
-        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+        if(emailEditText.getText().toString().matches("") || passwordEditText.getText().toString().matches("")){
             Toast.makeText(this, "Email or Password Field is Empty", Toast.LENGTH_SHORT).show();
         }
         else {
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
@@ -72,11 +68,11 @@ public class MainActivity extends AppCompatActivity {
 //  2.2.Sign Up
     public void signUpUser(View view){
 
-        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+        if(emailEditText.getText().toString().matches("") || passwordEditText.getText().toString().matches("")){
             Toast.makeText(this, "Email or Password Field is Empty", Toast.LENGTH_SHORT).show();
         }
         else {
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            mAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
